@@ -1,0 +1,2 @@
+export rvm_path="/Users/ksuzuki/.rvm"
+rvm use ruby-1.9.3-p194@evernote_oauth
