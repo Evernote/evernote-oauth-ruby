@@ -1,7 +1,7 @@
 Evernote OAuth / Thrift API client library for Ruby
 ===================================================
-Evernote OAuth version 0.01
-Evernote API version 1.21
+- Evernote OAuth version 0.01
+- Evernote API version 1.21
 
 Install the gem
 ---------------
@@ -27,8 +27,8 @@ development:
 Or you can just pass those information when you create an instance of the client
 ```ruby
 client = EvernoteOAuth::Client.new(
-  consumer_key: YOUR CONSUMER KEY
-  consumer_secret: YOUR CONSUMER SECRET
+  consumer_key: YOUR CONSUMER KEY,
+  consumer_secret: YOUR CONSUMER SECRET,
   sandbox: [true or false]
 )
 ```

@@ -56,7 +56,7 @@ module EvernoteOAuth
       end
 
       def thrift_client(client_class, url, options={})
-	@thrift_client = ThriftClient.new(client_class, url, options.merge(
+	@thrift_client ||= ThriftClient.new(client_class, url, options.merge(
           transport: Thrift::HTTPClientTransport))
       end
 
