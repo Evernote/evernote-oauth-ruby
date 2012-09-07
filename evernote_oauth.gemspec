@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
   s.rdoc_options = ["--inline-source", "--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubyforge_project = %q{evernote_oauth}
-  s.rubygems_version = %q{0.0.1}
+  s.rubygems_version = EvernoteOAuth::VERSION
   s.summary = %q{evernote_oauth is a Ruby client for the Evernote API using OAuth and Thrift.}
 
   if s.respond_to? :specification_version then
