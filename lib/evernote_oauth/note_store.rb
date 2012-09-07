@@ -2,7 +2,7 @@ module EvernoteOAuth
 
   class Client
     def note_store(options={})
-      @note_store ||= EvernoteOAuth::NoteStore.new(
+      @note_store = EvernoteOAuth::NoteStore.new(
 	client: thrift_client(::Evernote::EDAM::NoteStore::NoteStore::Client,
 			      user_store(options).getNoteStoreUrl(@token),
 			      options)

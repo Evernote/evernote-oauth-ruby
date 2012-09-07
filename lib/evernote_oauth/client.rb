@@ -13,6 +13,7 @@ module EvernoteOAuth
       @consumer_key ||= options[:consumer_key]
       @consumer_secret ||= options[:consumer_secret]
       @sandbox = options[:sandbox] if options[:sandbox]
+      @sandbox = true unless @sandbox
       @token = options[:token]
       @secret = options[:secret]
     end
@@ -56,7 +57,7 @@ module EvernoteOAuth
       end
 
       def thrift_client(client_class, url, options={})
-	@thrift_client ||= ThriftClient.new(client_class, url, options.merge(
+	@thrift_client = ThriftClient.new(client_class, url, options.merge(
           transport: Thrift::HTTPClientTransport))
       end
 
