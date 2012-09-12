@@ -10,10 +10,10 @@ module EvernoteOAuth
 	@sandbox = config['sandbox'] ? true : false
       end
 
-      @consumer_key ||= options[:consumer_key]
-      @consumer_secret ||= options[:consumer_secret]
-      @sandbox = options[:sandbox] if options[:sandbox]
-      @sandbox = true unless @sandbox
+      @consumer_key = options[:consumer_key] || @consumer_key
+      @consumer_secret = options[:consumer_secret] || @consumer_secret
+      @sandbox = true if @sandbox == nil
+      @sandbox = (options[:sandbox] == nil ? @sandbox : options[:sandbox])
       @token = options[:token]
       @secret = options[:secret]
     end
