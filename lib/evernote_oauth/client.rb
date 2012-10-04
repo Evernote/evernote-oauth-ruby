@@ -56,9 +56,10 @@ module EvernoteOAuth
 	@access_token ||= OAuth::AccessToken.new(consumer, @token, @secret)
       end
 
-      def thrift_client(client_class, url, options={})
-	@thrift_client = ThriftClient.new(client_class, url, options.merge(
-          transport: Thrift::HTTPClientTransport))
+      def thrift_client(client_class, url)
+	transport = Thrift::HTTPClientTransport.new(url)
+	protocol = Thrift::BinaryProtocol.new(transport)
+	client_class.new(protocol)
       end
 
   end
