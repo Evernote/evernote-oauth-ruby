@@ -1,7 +1,6 @@
 Evernote OAuth / Thrift API client library for Ruby
 ===================================================
-- Evernote OAuth version 0.03
-- Evernote API version 1.21
+- Evernote OAuth version 0.1.0
 
 Install the gem
 ---------------
