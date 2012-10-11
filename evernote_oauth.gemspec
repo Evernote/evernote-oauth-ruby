@@ -8,11 +8,11 @@ Gem::Specification.new do |s|
   s.name = %q{evernote_oauth}
   s.version = EvernoteOAuth::VERSION
 
-  s.authors = ["Kentaro Suzuki"]
+  s.authors = ["Evernote"]
   s.date = %q{2012-08-14}
   s.description = %q{evernote_oauth is a Ruby client for the Evernote API using OAuth and Thrift.}
-  s.email = %q{ksuzuki@gmail.com}
-  s.files = ["LICENSE", "README.md", "evernote_oauth.gemspec"] + Dir.glob('{lib,spec,vendor}/**/*')
+  s.email = %q{api@evernote.com}
+  s.files = ["LICENSE", "README.md", "evernote_oauth.gemspec"] + Dir.glob('{lib,spec}/**/*')
   s.has_rdoc = false
   s.homepage = %q{http://github.com/rekotan/evernote_oauth}
   s.rdoc_options = ["--inline-source", "--charset=UTF-8"]
@@ -26,7 +26,7 @@ Gem::Specification.new do |s|
     s.specification_version = 2
 
     s.add_dependency 'oauth', '>= 0.4.1'
-    s.add_dependency 'thrift_client', '>= 0.8.1'
+    s.add_dependency 'evernote-thrift'
     s.add_development_dependency 'rspec'
   end
 end

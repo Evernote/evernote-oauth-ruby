@@ -1,10 +1,10 @@
 module EvernoteOAuth
 
   class Client
-    def user_store(options={})
+    def user_store
       @user_store = EvernoteOAuth::UserStore.new(
 	client: thrift_client(::Evernote::EDAM::UserStore::UserStore::Client,
-			      endpoint('edam/user'), options)
+			      endpoint('edam/user'))
       )
     end
   end
@@ -21,8 +21,8 @@ module EvernoteOAuth
 
     def version_valid?
       checkVersion("EDAMTest",
-                   ::Evernote::EDAM::UserStore::EDAM_VERSION_MAJOR,
-                   ::Evernote::EDAM::UserStore::EDAM_VERSION_MINOR)
+		   ::Evernote::EDAM::UserStore::EDAM_VERSION_MAJOR,
+		   ::Evernote::EDAM::UserStore::EDAM_VERSION_MINOR)
     end
   end
 
