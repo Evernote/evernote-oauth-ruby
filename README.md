@@ -1,6 +1,6 @@
 Evernote OAuth / Thrift API client library for Ruby
 ===================================================
-- Evernote OAuth version 0.1.0
+- Evernote OAuth version 0.1.1
 
 Install the gem
 ---------------
@@ -34,6 +34,7 @@ client = EvernoteOAuth::Client.new(
 
 Usage
 -----
+### OAuth ###
 ```ruby
 client = EvernoteOAuth::Client.new
 request_token = client.request_token(:oauth_callback => 'YOUR CALLBACK URL')
@@ -46,9 +47,47 @@ access_token = request_token.get_access_token(oauth_verifier: params[:oauth_veri
 ```
 Now you can make other API calls
 ```ruby
-client = EvernoteOAuth::Client.new(token: access_token.token)
+token = access_token.token
+client = EvernoteOAuth::Client.new(token: token)
 note_store = client.note_store
-notebooks = note_store.listNotebooks(access_token.token)
+notebooks = note_store.listNotebooks(token)
+```
+
+### UserStore ###
+Once you acquire token, you can use UserStore. For example, if you want to call UserStore.getUser:
+```ruby
+user_store = EvernoteOAuth::Client.new(token: token).user_store
+user_store.getUser(token)
+```
+You can also omit authenticationToken in the arguments of UserStore functions:
+```ruby
+user_store.getUser
+```
+
+### NoteStore ###
+If you want to call NoteStore.listNotebooks:
+```ruby
+note_store = EvernoteOAuth::Client.new(token: token).note_store
+note_store.listNotebooks(token)
+```
+You can also omit authenticationToken in the arguments of NoteStore functions:
+```ruby
+note_store.listNotebooks
+```
+
+### NoteStore for linked notebooks ###
+If you want to get tags for linked notebooks:
+```ruby
+linked_notebook = note_store.listLinkedNotebooks.first # any notebook
+shared_note_store = client.shared_note_store(linked_notebook)
+stoken = shared_note_store.token
+shared_notebook = shared_note_store.getSharedNotebookByAuth(stoken)
+shared_note_store.listTagsByNotebook(stoken, shared_notebook.notebookGuid)
+```
+You can also omit authenticationToken in the arguments of NoteStore functions:
+```ruby
+shared_notebook = shared_note_store.getSharedNotebookByAuth
+shared_note_store.listTagsByNotebook(shared_notebook.notebookGuid)
 ```
 
 References

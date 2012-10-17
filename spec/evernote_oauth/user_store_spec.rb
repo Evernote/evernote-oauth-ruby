@@ -16,6 +16,9 @@ describe "EvernoteOAuth::UserStore" do
     it "dispatches method" do
       mock_client = mock(Object)
       mock_client.should_receive(:send).with(:call_method, 'args')
+      mock_client.class.should_receive(:instance_method).with(:call_method).and_return{
+	Proc.new {|a| a}
+      }
       EvernoteOAuth::UserStore.any_instance.stub(:version_valid?){true}
       user_store = EvernoteOAuth::UserStore.new(client: mock_client)
       user_store.call_method('args')
