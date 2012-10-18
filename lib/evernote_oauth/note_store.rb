@@ -3,19 +3,19 @@ module EvernoteOAuth
   class Client
     def note_store(options={})
       @note_store = EvernoteOAuth::NoteStore.new(
+	token: options[:token] || @token,
 	client: thrift_client(::Evernote::EDAM::NoteStore::NoteStore::Client,
-			      options[:note_store_url] || user_store.getNoteStoreUrl(@token))
+			      options[:note_store_url] || user_store.getNoteStoreUrl)
       )
     end
   end
 
   class NoteStore
-    def initialize(options={})
-      @client = options[:client]
-    end
+    include ::EvernoteOAuth::ThriftClientDelegation
 
-    def method_missing(name, *args, &block)
-      @client.send(name, *args, &block)
+    def initialize(options={})
+      @token = options[:token]
+      @client = options[:client]
     end
   end
 
