@@ -1,3 +1,4 @@
 .rvmrc
+.irbrc
 *.gem
 *.swp
