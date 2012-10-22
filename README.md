@@ -1,6 +1,6 @@
 Evernote OAuth / Thrift API client library for Ruby
 ===================================================
-- Evernote OAuth version 0.1.1
+- Evernote OAuth version 0.1.2
 
 Install the gem
 ---------------
@@ -89,6 +89,37 @@ You can also omit authenticationToken in the arguments of NoteStore functions:
 shared_notebook = shared_note_store.getSharedNotebookByAuth
 shared_note_store.listTagsByNotebook(shared_notebook.notebookGuid)
 ```
+
+### Method Chaining ###
+You can chain methods:
+```ruby
+note_store.findNotes(Evernote::EDAM::NoteStore::NoteFilter.new, 0, 10).first.tags.first.parent
+ => [<Evernote::EDAM::Type::Tag guid:"xxxxx", name:"sample", updateSequenceNum:100>]
+```
+Here are the additional methods for each types:
+
+- Evernote::EDAM::NoteStore::NoteList
+  - notes
+- Evernote::EDAM::NoteStore::NoteMetadata
+  - tags
+- Evernote::EDAM::NoteStore::NotesMetadataList
+  - notes
+- Evernote::EDAM::NoteStore::SyncChunk
+  - notes, notebooks, tags, searches, resources, linkedNotebooks
+- Evernote::EDAM::Type::Note
+  - notebook, tags
+- Evernote::EDAM::Type::Resource
+  - note: needs hash argument
+      - with_constant: boolean
+      - with_resources_data: boolean
+      - with_resources_recognition: boolean
+      - with_resources_alternate_data: boolean
+- Evernote::EDAM::Type::SharedNotebook
+  - notebook
+- Evernote::EDAM::Type::Tag
+  - parent
+
+Notes: Those methods call thrift API internally.  The result will be cached in the object so that the second method call wouldn't thrift API again.
 
 References
 ----------

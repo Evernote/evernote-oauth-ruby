@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
   s.email = %q{api@evernote.com}
   s.files = ["LICENSE", "README.md", "evernote_oauth.gemspec"] + Dir.glob('{lib,spec}/**/*')
   s.has_rdoc = false
-  s.homepage = %q{http://github.com/rekotan/evernote_oauth}
+  s.homepage = %q{http://github.com/evernote/evernote-oauth-ruby}
   s.rdoc_options = ["--inline-source", "--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubyforge_project = %q{evernote_oauth}
