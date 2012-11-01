@@ -58,6 +58,7 @@ module EvernoteOAuth
 
       def thrift_client(client_class, url)
 	transport = Thrift::HTTPClientTransport.new(url)
+	transport.add_headers('User-Agent' => "evernote_oauth v#{::EvernoteOAuth::VERSION}")
 	protocol = Thrift::BinaryProtocol.new(transport)
 	client_class.new(protocol)
       end

@@ -1,0 +1,2 @@
+module NoteStoreHelper
+end

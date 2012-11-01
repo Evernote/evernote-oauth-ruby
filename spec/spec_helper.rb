@@ -1,6 +1,6 @@
 require 'evernote_oauth'
 require 'rspec'
 
-Dir.glob(File.join(File.join(File.dirname(__FILE__), "..", "lib"), "**")).each do |file|
+Dir.glob(File.join(File.join(File.dirname(__FILE__), "..", "lib"), "**.rb")).each do |file|
   require file
 end

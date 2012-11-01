@@ -1,0 +1,61 @@
+%h2 Sample Use Cases
+%ul
+  - @available_advanced_methods.each do |m|
+    %li= link_to_advanced m
+
+%h2 Basic Usage of UserStore
+%ul
+  - @available_us_methods.each do |m|
+    %li= link_to_user_store m
+- unless @unavailable_us_methods.blank?
+  %h4 Not implemented
+  %ul
+    - @unavailable_us_methods.each do |m|
+      %li= m
+
+%h2 Basic Usage of NoteStore
+%ul
+  - @available_ns_methods.each do |m|
+    %li= link_to_note_store m
+- unless @unavailable_ns_methods.blank?
+  %h4 Not implemented
+  %ul
+    - @unavailable_ns_methods.each do |m|
+      %li= m
+
+-# For NoteStore#createLinkedNotebook, NoteStore#createSharedNotebook
+- ['createLinkedNotebook', 'createSharedNotebook'].each do |m|
+  %div{id: "#{m}-form", title: "Type your email address"}
+    = form_tag do
+      %fieldset
+        = label_tag "email"
+        = text_field_tag "email", '',
+          :class => "text ui-widget-content ui-corner-all", :id => "email-#{m}", :size => 30
+
+  :javascript
+    $("##{m}-form").dialog({
+      autoOpen: false,
+      height: 220,
+      width: 400,
+      modal: true,
+      buttons: {
+        Proceed: function() {
+          window.location =
+            $('#note_store_#{m}').attr('href') + '?email=' + $("#email-#{m}").val();
+        },
+        Cancel: function() {
+          $( this ).dialog( "close" );
+        }
+      }
+    });
+    $("##{m}-form").keypress(function(e) {
+      if (e.keyCode == $.ui.keyCode.ENTER) {
+        window.location =
+          $('#note_store_#{m}').attr('href') + '?email=' + $("#email-#{m}").val();
+        return false;
+      }
+    });
+    $("#note_store_#{m}").bind('click', function() {
+      $("##{m}-form").dialog("open");
+      return false;
+    });

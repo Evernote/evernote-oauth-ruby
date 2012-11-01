@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.version = EvernoteOAuth::VERSION
 
   s.authors = ["Evernote"]
-  s.date = %q{2012-08-14}
+  s.date = Time.now.strftime('%Y-%m-%d')
   s.description = %q{evernote_oauth is a Ruby client for the Evernote API using OAuth and Thrift.}
   s.email = %q{api@evernote.com}
   s.files = ["LICENSE", "README.md", "evernote_oauth.gemspec"] + Dir.glob('{lib,spec}/**/*')

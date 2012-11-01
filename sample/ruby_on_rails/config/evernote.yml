@@ -1,0 +1,4 @@
+development:
+  consumer_key: <%= ENV['EN_CONSUMER_KEY'] %>
+  consumer_secret: <%= ENV['EN_CONSUMER_SECRET'] %>
+  sandbox: true
