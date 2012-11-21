@@ -121,6 +121,23 @@ Here are the additional methods for each types:
 
 Notes: Those methods call thrift API internally.  The result will be cached in the object so that the second method call wouldn't thrift API again.
 
+### Image Adding ###
+Additional method is defined in Note to be easily added an image:
+```ruby
+note = Evernote::EDAM::Type::Note.new(
+  title: 'Note',
+  tagNames: ['Evernote API Sample']
+)
+
+filename = "enlogo.png"
+image = File.open(filename, "rb") { |io| io.read }
+hexdigest = note.add_resource(filename, image, 'image/png')
+```
+You can use hexdigest within ENXML:
+```xml
+<en-media type="image/png" hash="#{hexdigest}"/>
+```
+
 References
 ----------
 - Evernote Developers: http://dev.evernote.com/

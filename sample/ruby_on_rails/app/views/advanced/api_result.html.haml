@@ -1,0 +1,15 @@
+= link_to 'Back to the list', root_path
+%hr
+%h2= params[:method].to_s.titleize
+%h2 Code
+= CodeRay.scan(@code, :ruby).div(:line_numbers => :table).html_safe
+%h2 Result
+= CodeRay.scan(@result.inspect, :ruby).div.html_safe
+- if @note
+  %h2 Note
+  = auto_link @note
+- if @docs && @doc_urls
+  %h2 Document
+  - @docs.zip(@doc_urls).each do |doc, doc_url|
+    = link_to 'API Document', doc_url
+    = doc.html_safe

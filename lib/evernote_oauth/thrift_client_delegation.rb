@@ -19,7 +19,13 @@ module EvernoteOAuth
 
       attr_name = underscore(self.class.name.split('::').last).to_sym
       attr_value = self
-      [result].flatten.each{|r| r.define_singleton_method(attr_name){attr_value}}
+      [result].flatten.each{|r|
+        begin
+          r.define_singleton_method(attr_name){attr_value}
+        rescue TypeError # Fixnum/TrueClass/FalseClass/NilClass
+          next
+        end
+      }
       result
     end
 
