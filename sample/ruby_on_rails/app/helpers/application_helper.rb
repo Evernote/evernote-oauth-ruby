@@ -1,7 +1,7 @@
 module ApplicationHelper
 
   # These methods are not available to third party applications
-  UNAVAILABLE_METHODS = [:authenticate, :refreshAuthentication, :emailNote, :expungeInactiveNotes,
+  UNAVAILABLE_METHODS = [:authenticate, :authenticateLongSession, :refreshAuthentication, :emailNote, :expungeInactiveNotes,
     :expungeLinkedNotebook, :expungeNote, :expungeNotebook, :expungeNotes, :expungeSearch,
     :expungeSharedNotebooks, :expungeTag, :getAccountSize, :getAds, :getRandomAd]
 

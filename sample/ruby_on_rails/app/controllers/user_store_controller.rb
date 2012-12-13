@@ -2,10 +2,19 @@ class UserStoreController < EvernoteController
 
   private
   def authenticate; end
+  def authenticateLongSession; end
+
+  def authenticateToBusiness
+    @code = <<-CODE
+client = EvernoteOAuth::Client.new
+user_store = client.user_store
+user_store.authenticateToBusiness(authtoken)
+    CODE
+  end
 
   def checkVersion
     @code = <<-CODE
-client = EvernoteOAuth::Client.new(token: authtoken)
+client = EvernoteOAuth::Client.new
 user_store = client.user_store
 user_store.checkVersion('Evernote EDAMTest (Ruby)', Evernote::EDAM::UserStore::EDAM_VERSION_MAJOR, Evernote::EDAM::UserStore::EDAM_VERSION_MINOR)
     CODE
@@ -13,7 +22,7 @@ user_store.checkVersion('Evernote EDAMTest (Ruby)', Evernote::EDAM::UserStore::E
 
   def getBootstrapInfo
     @code = <<-CODE
-client = EvernoteOAuth::Client.new(token: authtoken)
+client = EvernoteOAuth::Client.new
 user_store = client.user_store
 user_store.getBootstrapInfo('en_US')
     CODE
