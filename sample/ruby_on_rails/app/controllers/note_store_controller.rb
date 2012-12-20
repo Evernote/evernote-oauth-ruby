@@ -80,6 +80,20 @@ note_store.createSharedNotebook(shared_notebook)
     CODE
   end
 
+  def updateSharedNotebook
+    @code = <<-CODE
+client = EvernoteOAuth::Client.new(token: authtoken)
+note_store = client.note_store
+linked_notebooks = note_store.listLinkedNotebooks
+
+linked_notebook = linked_notebooks.first
+shared_note_store = client.shared_note_store(linked_notebook)
+shared_notebook = shared_note_store.getSharedNotebookByAuth
+
+note_store.updateSharedNotebook(shared_notebook)
+    CODE
+  end
+
   def copyNote
     @code = <<-CODE
 client = EvernoteOAuth::Client.new(token: authtoken)
@@ -255,10 +269,6 @@ related_result_spec.maxTags = 10
 note_store.findRelated(related_query, related_result_spec)
     CODE
   end
-
-  def getAccountSize; end
-  def getAds; end
-  def getRandomAd; end
 
   def getDefaultNotebook
     @code = <<-CODE

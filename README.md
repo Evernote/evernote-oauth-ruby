@@ -1,6 +1,6 @@
 Evernote OAuth / Thrift API client library for Ruby
 ===================================================
-- Evernote OAuth version 0.1.3
+- Evernote OAuth version 0.1.4
 
 Install the gem
 ---------------
@@ -88,6 +88,19 @@ You can also omit authenticationToken in the arguments of NoteStore functions:
 ```ruby
 shared_notebook = shared_note_store.getSharedNotebookByAuth
 shared_note_store.listTagsByNotebook(shared_notebook.notebookGuid)
+```
+
+### NoteStore for Business ###
+If you want to get the list of notebooks in your business account:
+```ruby
+business_note_store = client.business_note_store
+btoken = business_note_store.token
+business_note_store.listNotebooks(btoken)
+```
+You can also omit authenticationToken in the arguments of NoteStore functions:
+```ruby
+business_note_store = client.business_note_store
+business_note_store.listNotebooks
 ```
 
 ### Method Chaining ###
