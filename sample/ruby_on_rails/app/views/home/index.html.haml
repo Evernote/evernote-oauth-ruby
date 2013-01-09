@@ -1,5 +1,8 @@
 - if ENV['EN_CONSUMER_KEY'].blank? || ENV['EN_CONSUMER_SECRET'].blank?
   %h2 You have to set your Evernote Consumer Key and Consumer Secret in you environmental variables first.
+  %ul
+    %li= "EN_CONSUMER_KEY: #{ENV['EN_CONSUMER_KEY']}"
+    %li= "EN_CONSUMER_SECRET: #{ENV['EN_CONSUMER_SECRET']}"
 
 - elsif authtoken
   = link_to (session[:dry_run] ? "Allow actual API call" : "Prohibit actual API call"), switch_mode_path
