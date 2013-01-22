@@ -1,3 +1,5 @@
+[![Gem Version](https://badge.fury.io/rb/evernote_oauth.png)](http://badge.fury.io/rb/evernote_oauth)
+
 Evernote OAuth / Thrift API client library for Ruby
 ===================================================
 - Evernote OAuth version 0.1.5
