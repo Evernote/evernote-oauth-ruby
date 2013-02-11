@@ -67,7 +67,7 @@ module EvernoteOAuth
 
       transport = Thrift::HTTPClientTransport.new(url)
       transport.add_headers(
-        'User-Agent' => "EvernoteOAuth(#{key_id}) / #{::EvernoteOAuth::VERSION}; Ruby / #{RUBY_VERSION};"
+        'User-Agent' => "#{key_id} / #{::EvernoteOAuth::VERSION}; Ruby / #{RUBY_VERSION};"
       )
       transport.add_headers(@additional_headers) if @additional_headers
       protocol = Thrift::BinaryProtocol.new(transport)
