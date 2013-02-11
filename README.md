@@ -2,7 +2,7 @@
 
 Evernote OAuth / Thrift API client library for Ruby
 ===================================================
-- Evernote OAuth version 0.1.5
+- Evernote OAuth version 0.1.6
 
 Install the gem
 ---------------
@@ -59,21 +59,14 @@ notebooks = note_store.listNotebooks(token)
 Once you acquire token, you can use UserStore. For example, if you want to call UserStore.getUser:
 ```ruby
 user_store = EvernoteOAuth::Client.new(token: token).user_store
-user_store.getUser(token)
-```
-You can also omit authenticationToken in the arguments of UserStore functions:
-```ruby
 user_store.getUser
 ```
+You can omit authenticationToken in the arguments of UserStore/NoteStore functions:
 
 ### NoteStore ###
 If you want to call NoteStore.listNotebooks:
 ```ruby
 note_store = EvernoteOAuth::Client.new(token: token).note_store
-note_store.listNotebooks(token)
-```
-You can also omit authenticationToken in the arguments of NoteStore functions:
-```ruby
 note_store.listNotebooks
 ```
 
@@ -82,12 +75,6 @@ If you want to get tags for linked notebooks:
 ```ruby
 linked_notebook = note_store.listLinkedNotebooks.first # any notebook
 shared_note_store = client.shared_note_store(linked_notebook)
-stoken = shared_note_store.token
-shared_notebook = shared_note_store.getSharedNotebookByAuth(stoken)
-shared_note_store.listTagsByNotebook(stoken, shared_notebook.notebookGuid)
-```
-You can also omit authenticationToken in the arguments of NoteStore functions:
-```ruby
 shared_notebook = shared_note_store.getSharedNotebookByAuth
 shared_note_store.listTagsByNotebook(shared_notebook.notebookGuid)
 ```
@@ -95,14 +82,12 @@ shared_note_store.listTagsByNotebook(shared_notebook.notebookGuid)
 ### NoteStore for Business ###
 If you want to get the list of notebooks in your business account:
 ```ruby
+user_store = client.user_store
+user = user_store.getUser
 business_note_store = client.business_note_store
-btoken = business_note_store.token
-business_note_store.listNotebooks(btoken)
-```
-You can also omit authenticationToken in the arguments of NoteStore functions:
-```ruby
-business_note_store = client.business_note_store
-business_note_store.listNotebooks
+if user.belongs_to_business?
+  business_note_store.listNotebooks
+end
 ```
 
 ### Method Chaining ###

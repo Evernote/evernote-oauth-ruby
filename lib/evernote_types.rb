@@ -1,5 +1,6 @@
 require 'evernote_oauth/store_attachable'
 
+require 'evernote/edam/type/user'
 require 'evernote/edam/type/note'
 require 'evernote/edam/type/resource'
 require 'evernote/edam/type/shared_notebook'
