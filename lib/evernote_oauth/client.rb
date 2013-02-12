@@ -4,7 +4,12 @@ module EvernoteOAuth
     def initialize(options={})
       config_file = "config/evernote.yml"
       if File.exist?(config_file)
-        config = YAML.load(ERB.new(File.read(config_file)).result)[Rails.env]
+        require 'erb'
+        if defined?(Rails)
+          config = YAML.load(ERB.new(File.read(config_file)).result)[Rails.env]
+        else
+          config = YAML.load(ERB.new(File.read(config_file)).result)
+        end
         @consumer_key = config['consumer_key']
         @consumer_secret = config['consumer_secret']
         @sandbox = config['sandbox'] ? true : false

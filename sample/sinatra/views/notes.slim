@@ -1,0 +1,24 @@
+p style='color:green'
+  | Congratulations, you have successfully authorized this application to access your Evernote account!
+hr
+
+- if @note
+  p
+    | #{@note.title} is updated by webhook.
+  hr
+
+p
+  | Following notes are webhooked from you Evernote account "#{@user.username}":
+ul
+  - @notes.each do |note|
+    li= note.title
+hr
+
+p
+  | Let's see what happens if webhook notifications are sent by clicking following links.
+  |  Following links simulate Evernote webhook notifications which would be sent when notes are created.
+  - @evernote_notes.each do |note|
+    li
+      - url = "/webhook?userId=#{@user.user_id}&guid=#{note.guid}&reason=create"
+      a href="#{url}" #{url}
+
