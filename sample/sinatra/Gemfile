@@ -1,0 +1,8 @@
+source 'https://rubygems.org'
+
+gem "evernote_oauth"
+gem "sinatra"
+gem "sinatra-activerecord"
+gem "sqlite3"
+gem "rake"
+gem "slim"

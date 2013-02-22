@@ -10,7 +10,6 @@ module EvernoteOAuth
 	begin
 	  result = @client.send(name, *new_args, &block)
 	rescue ArgumentError => e
-	  puts e.inspect
 	  result = @client.send(name, *args, &block)
 	end
       else
