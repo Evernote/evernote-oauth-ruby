@@ -14,7 +14,7 @@ GEM
       multi_json (~> 1.0)
     arel (3.0.2)
     builder (3.0.4)
-    evernote-thrift (1.23.3)
+    evernote-thrift (1.23.2)
     evernote_oauth (0.1.8)
       evernote-thrift
       oauth (>= 0.4.1)

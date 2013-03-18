@@ -39,7 +39,7 @@ GEM
       execjs
     coffee-script-source (1.4.0)
     erubis (2.7.0)
-    evernote-thrift (1.23.3)
+    evernote-thrift (1.23.2)
     evernote_oauth (0.1.8)
       evernote-thrift
       oauth (>= 0.4.1)
