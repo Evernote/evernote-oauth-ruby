@@ -34,12 +34,8 @@ module EvernoteOAuth
     end
 
     def request_token(options={})
-      consumer.get_request_token(options)
-    end
-
-    def authentication_request_token(options={})
       consumer.options[:authorize_path] = '/OAuth.action'
-      request_token(options)
+      consumer.get_request_token(options)
     end
 
     private
