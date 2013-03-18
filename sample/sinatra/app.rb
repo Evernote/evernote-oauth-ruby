@@ -71,7 +71,7 @@ class EnWebhook < Sinatra::Base
 
     begin
       client = EvernoteOAuth::Client.new
-      session[:request_token] = client.authentication_request_token(:oauth_callback => callback_url)
+      session[:request_token] = client.request_token(:oauth_callback => callback_url)
       redirect session[:request_token].authorize_url
     rescue => e
       @error = "Error obtaining temporary credentials: #{e.message}"
