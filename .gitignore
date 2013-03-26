@@ -2,3 +2,5 @@
 .irbrc
 *.gem
 *.swp
+.yardoc
+doc/
