@@ -5,15 +5,15 @@ module EvernoteOAuth
       method = @client.class.instance_method(name)
       parameters = method.parameters
       if parameters.size != args.size &&
-	idx_token = parameters.index{|e| e.last == :authenticationToken}
-	new_args = args.dup.insert(idx_token, @token)
-	begin
-	  result = @client.send(name, *new_args, &block)
-	rescue ArgumentError => e
-	  result = @client.send(name, *args, &block)
-	end
+        idx_token = parameters.index{|e| e.last == :authenticationToken}
+        new_args = args.dup.insert(idx_token, @token)
+        begin
+          result = @client.send(name, *new_args, &block)
+        rescue ArgumentError => e
+          result = @client.send(name, *args, &block)
+        end
       else
-	result = @client.send(name, *args, &block)
+        result = @client.send(name, *args, &block)
       end
 
       attr_name = underscore(self.class.name.split('::').last).to_sym

@@ -35,21 +35,10 @@ describe "EvernoteOAuth::Client" do
     it "calls OAuth::Consumer#get_request_token" do
       mock_request_token = mock(OAuth::RequestToken)
       mock_consumer = mock(OAuth::Consumer)
-      mock_consumer.should_receive(:get_request_token).and_return(mock_request_token)
-      @client.should_receive(:consumer).and_return(mock_consumer)
+      mock_consumer.should_receive(:options).and_return({})
+      mock_consumer.should_receive(:get_request_token).with({}).and_return(mock_request_token)
+      @client.should_receive(:consumer).any_number_of_times.and_return(mock_consumer)
       @client.request_token.should == mock_request_token
-    end
-  end
-  context "#authentication_request_token" do
-    it "calls request_token with 'authorize_path' options" do
-      option = {}
-      mock_request_token = mock(OAuth::RequestToken)
-      mock_consumer = mock(OAuth::Consumer)
-      mock_consumer.should_receive(:options).and_return(option)
-      @client.should_receive(:consumer).and_return(mock_consumer)
-      @client.should_receive(:request_token).and_return(mock_request_token)
-      @client.authentication_request_token.should == mock_request_token
-      option[:authorize_path].should == '/OAuth.action'
     end
   end
 end
