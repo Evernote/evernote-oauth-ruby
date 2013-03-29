@@ -1,3 +1,4 @@
 tmp
 log
 *.sqlite3
+Gemfile.lock

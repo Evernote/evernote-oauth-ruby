@@ -1,5 +1,10 @@
 module EvernoteOAuth
   class Client
+    include ::EvernoteOAuth::UserStore
+    include ::EvernoteOAuth::NoteStore
+    include ::EvernoteOAuth::SharedNoteStore
+    include ::EvernoteOAuth::BusinessNoteStore
+    include ::EvernoteOAuth::BusinessUtils
 
     def initialize(options={})
       config_file = "config/evernote.yml"
@@ -60,7 +65,7 @@ module EvernoteOAuth
     end
 
     def thrift_client(client_class, url)
-      if m = /:A=(.+):/.match(@token)
+      if m = /:A=([^:]+):/.match(@token)
         key_id = m[1]
       else
         key_id = @consumer_key || 'nil'

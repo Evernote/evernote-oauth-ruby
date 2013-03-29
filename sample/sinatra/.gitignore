@@ -1,2 +1,3 @@
 .rvmrc
 *.sqlite3
+Gemfile.lock

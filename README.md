@@ -137,6 +137,53 @@ You can use hexdigest within ENXML:
 <en-media type="image/png" hash="#{hexdigest}"/>
 ```
 
+Utility methods for Business
+----------------------------
+This gem provides some utility methods to deal with Evernote Business.
+
+### List business notebooks ###
+To list all business notebooks the user can access
+```ruby
+client = EvernoteOAuth::Client.new(token: token)
+client.list_business_notebooks
+```
+
+### Create a business note ###
+To create a business note in a business notebook
+```ruby
+note = Evernote::EDAM::Type::Note.new
+business_notebook = client.list_business_notebooks.first
+client.create_note_in_business_notebook(note, business_notebook)
+```
+
+### Create a business notebook ###
+To create a business notebook
+```ruby
+notebook = Evernote::EDAM::Type::Notebook.new
+client.create_business_notebook(notebook)
+```
+
+### Get a notebook corresponding to the given business notebook ###
+```ruby
+business_notebook = client.list_business_notebooks.first
+client.get_corresponding_notebook(business_notebook)
+```
+
+### Determine if the user can edit the notebook ###
+```ruby
+notebook.writable?
+```
+
+### Determine if the user is a part of a business ###
+```ruby
+user.belongs_to_business?
+```
+
+### Get a business name of the user ###
+```ruby
+user.business_name
+```
+
 References
 ----------
 - Evernote Developers: http://dev.evernote.com/
