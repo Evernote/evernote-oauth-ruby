@@ -5,7 +5,7 @@ module Evernote
 
         # Returns the associated notebook shared
         #
-        # @reutrn [Evernote::EDAM::Type::Notebook]
+        # @return [Evernote::EDAM::Type::Notebook]
         def notebook
           @notebook ||= note_store.getNotebook(notebookGuid)
         end
