@@ -16,7 +16,7 @@ module EvernoteOAuth
         result = @client.send(name, *args, &block)
       end
 
-      attr_name = underscore(self.class.name.split('::').last).to_sym
+      attr_name = underscore(self.class.name.gsub(/::Store$/, '').split('::').last).to_sym
       attr_value = self
       [result].flatten.each{|r|
         begin
