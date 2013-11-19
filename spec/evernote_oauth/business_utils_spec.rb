@@ -40,15 +40,13 @@ describe "EvernoteOAuth::BusinessUtils" do
       )
       business_note_store = mock(Object)
       business_note_store.stub(:createNotebook).with(notebook).and_return(business_notebook)
-      should_receive(:business_note_store).and_return(business_note_store)
+      should_receive(:business_note_store).twice.and_return(business_note_store)
 
       business_user = Evernote::EDAM::Type::User.new(
         username: 'username',
         shardId: 'shardId'
       )
-      user_store = mock(Object)
-      user_store.stub(:getUser).and_return(business_user)
-      should_receive(:user_store).and_return(user_store)
+      business_note_store.stub(:user).and_return(business_user)
 
       note_store = mock(Object)
       note_store.should_receive(:createLinkedNotebook).with(
@@ -74,7 +72,7 @@ describe "EvernoteOAuth::BusinessUtils" do
       should_receive(:shared_note_store).with(business_notebook).and_return(shared_note_store)
 
       business_note_store = mock(Object)
-      business_note_store.should_receive(:getNotebookWithGuid).with('notebook_guid')
+      business_note_store.should_receive(:getNotebook).with('notebook_guid')
       should_receive(:business_note_store).and_return(business_note_store)
 
       get_corresponding_notebook(business_notebook)

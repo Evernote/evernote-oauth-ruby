@@ -16,7 +16,6 @@ module EvernoteOAuth
         result = @client.send(name, *args, &block)
       end
 
-      attr_name = underscore(self.class.name.gsub(/::Store$/, '').split('::').last).to_sym
       attr_value = self
       [result].flatten.each{|r|
         begin
@@ -29,6 +28,17 @@ module EvernoteOAuth
     end
 
     private
+    def attr_name
+      name = underscore(self.class.name.gsub(/::Store$/, '').split('::').last)
+      if name.end_with?('user_store')
+        :user_store
+      elsif name.end_with?('note_store')
+        :note_store
+      else
+        raise "Unsupported type: #{self.class.name}"
+      end
+    end
+
     def underscore(word)
       word.to_s.gsub(/([A-Z]+)([A-Z][a-z])/,'\1_\2').
         gsub(/([a-z\d])([A-Z])/,'\1_\2').

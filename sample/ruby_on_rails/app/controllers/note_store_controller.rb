@@ -74,6 +74,7 @@ created_notebook = note_store.createNotebook(notebook)
 
 shared_notebook = Evernote::EDAM::Type::SharedNotebook.new
 shared_notebook.email = '#{params[:email]}'
+shared_notebook.allowPreview = false
 shared_notebook.notebookGuid = created_notebook.guid
 
 note_store.createSharedNotebook(shared_notebook)
