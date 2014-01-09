@@ -21,10 +21,10 @@ describe "EvernoteOAuth::Client" do
   end
   context "#authorize" do
     it "assigns returns access token" do
-      mock_access_token = mock(OAuth::AccessToken)
+      mock_access_token = double(OAuth::AccessToken)
       mock_access_token.should_receive(:token).and_return('token')
       mock_access_token.should_receive(:secret).and_return('secret')
-      mock_request_token = mock(OAuth::RequestToken)
+      mock_request_token = double(OAuth::RequestToken)
       mock_request_token.should_receive(:get_access_token).and_return(mock_access_token)
       OAuth::RequestToken.stub(:new){mock_request_token}
 
@@ -33,11 +33,11 @@ describe "EvernoteOAuth::Client" do
   end
   context "#request_token" do
     it "calls OAuth::Consumer#get_request_token" do
-      mock_request_token = mock(OAuth::RequestToken)
-      mock_consumer = mock(OAuth::Consumer)
+      mock_request_token = double(OAuth::RequestToken)
+      mock_consumer = double(OAuth::Consumer)
       mock_consumer.should_receive(:options).and_return({})
       mock_consumer.should_receive(:get_request_token).with({}).and_return(mock_request_token)
-      @client.should_receive(:consumer).any_number_of_times.and_return(mock_consumer)
+      @client.stub(:consumer){mock_consumer}
       @client.request_token.should == mock_request_token
     end
   end

@@ -15,7 +15,7 @@ GEM
     arel (3.0.2)
     builder (3.0.4)
     evernote-thrift (1.25.1)
-    evernote_oauth (0.2.2)
+    evernote_oauth (0.2.3)
       evernote-thrift
       oauth (>= 0.4.1)
     i18n (0.6.1)

@@ -11,7 +11,7 @@ describe "EvernoteOAuth::NoteStore" do
   end
   context "#method_missing" do
     it "dispatches method" do
-      mock_client = mock(Object)
+      mock_client = double(Object)
       mock_client.should_receive(:send).with(:call_method, 'args')
       mock_client.class.should_receive(:instance_method).with(:call_method).and_return{
         Proc.new {|a| a}

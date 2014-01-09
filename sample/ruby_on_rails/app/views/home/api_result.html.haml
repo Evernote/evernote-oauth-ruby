@@ -2,13 +2,13 @@
 %hr
 %h2= "#{controller_name.classify}##{params[:method]}"
 %h2 Code
-= CodeRay.scan(@code, :ruby).div(:line_numbers => :table).html_safe
+= CodeRay.scan(@code, :ruby).div(line_numbers: :table).html_safe
 %h2 Result
 - if params[:method] == 'getResourceData'
   %img{:src => "data:image/png;base64,#{[@result].pack('m')}"} 
   = CodeRay.scan(truncate(@result.inspect, length: 100), :ruby).div.html_safe
 - else
-  = CodeRay.scan(@result.inspect, :ruby).div.html_safe
+  = CodeRay.scan(@result.awesome_inspect(plain: true), :ruby).div.html_safe
 - if @note
   %h2 Note
   = auto_link @note

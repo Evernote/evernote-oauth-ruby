@@ -10,6 +10,7 @@ gem 'coderay'
 gem 'rails_autolink'
 gem 'execjs'
 gem 'therubyracer'
+gem 'awesome_print'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
