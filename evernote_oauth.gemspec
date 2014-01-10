@@ -10,6 +10,7 @@ Gem::Specification.new do |s|
 
   s.authors = ["Evernote"]
   s.date = Time.now.strftime('%Y-%m-%d')
+  s.licenses = ['BSD 2-Clause']
   s.description = %q{evernote_oauth is a Ruby client for the Evernote API using OAuth and Thrift.}
   s.email = %q{api@evernote.com}
   s.files = ["LICENSE", "README.md", "evernote_oauth.gemspec"] + Dir.glob('{lib,spec}/**/*')
@@ -19,7 +20,7 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
   s.rubyforge_project = %q{evernote_oauth}
   s.rubygems_version = EvernoteOAuth::VERSION
-  s.summary = %q{evernote_oauth is a Ruby client for the Evernote API using OAuth and Thrift.}
+  s.summary = %q{Ruby client for the Evernote API using OAuth and Thrift.}
 
   if s.respond_to? :specification_version then
     current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
