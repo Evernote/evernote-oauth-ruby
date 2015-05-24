@@ -11,7 +11,7 @@ Prerequisites
 -------------
 In order to use the code in this SDK, you need to obtain an API key from http://dev.evernote.com/documentation/cloud. You'll also find full API documentation on that page.
 
-In order to run the sample code, you need a user account on the sandbox service where you will do your development. Sign up for an account at https://sandbox.evernote.com/Registration.action 
+In order to run the sample code, you need a user account on the sandbox service where you will do your development. Sign up for an account at https://sandbox.evernote.com/Registration.action
 
 In order to run the client client sample code, you need a developer token. Get one at https://sandbox.evernote.com/api/DeveloperToken.action
 
@@ -42,9 +42,18 @@ request_token = client.request_token(:oauth_callback => 'YOUR CALLBACK URL')
 request_token.authorize_url
  => https://sandbox.evernote.com/OAuth.action?oauth_token=OAUTH_TOKEN
 ```
+**Notice**: On rail, You should save your `token` and `secret` here
+```ruby
+    session[:request_token] = request_token.token
+    session[:request_secret] = request_token.secret
+```
+
 To obtain the access token
 ```ruby
-access_token = request_token.get_access_token(oauth_verifier: params[:oauth_verifier])
+access_token = client.authorize(
+        session[:request_token],
+        session[:request_secret],
+        params[:oauth_verifier]))
 ```
 Now you can make other API calls
 ```ruby
